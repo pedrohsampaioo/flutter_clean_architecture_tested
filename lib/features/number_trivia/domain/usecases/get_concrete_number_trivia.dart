@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:number_trivia/core/usecases/usecase.dart';
-
 import '../../../../core/failures/failure.dart';
+import '../../../../core/usecases/usecase.dart';
 import '../entities/number_trivia_entity.dart';
 import '../repositories/number_trivia_repository.dart';
 
