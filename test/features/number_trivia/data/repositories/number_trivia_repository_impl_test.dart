@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:number_trivia/core/exceptions/exception.dart';
 import 'package:number_trivia/core/failures/failure.dart';
-import 'package:number_trivia/core/platform/network_info.dart';
+import 'package:number_trivia/core/network/network_info.dart';
 import 'package:number_trivia/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:number_trivia/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:number_trivia/features/number_trivia/data/model/number_trivia_model.dart';
@@ -54,7 +54,7 @@ main() {
         });
 
         test('must return a remote trivia number', () async {
-          when(numberTriviaRemoteDataSource.getConcreteNumberTrivia(number))
+          when(numberTriviaRemoteDataSource.getConcreteNumberTrivia(any))
               .thenAnswer((_) async => numberTriviaModel);
           final result = await repository.getConcreteNumberTrivia(number);
           final expected = right(numberTriviaEntity);
@@ -67,7 +67,7 @@ main() {
 
         test('must return a network failure when a network exception occurs',
             () async {
-          when(numberTriviaRemoteDataSource.getConcreteNumberTrivia(number))
+          when(numberTriviaRemoteDataSource.getConcreteNumberTrivia(any))
               .thenThrow(NetworkException());
           final result = await repository.getConcreteNumberTrivia(number);
           final expected = left<Failure, NumberTriviaEntity>(
